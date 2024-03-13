@@ -16,5 +16,21 @@ public class SIRModel
     }
 
     // Add methods to calculate the SIR model here
-    
+    public double CalculateSusceptible(double time)
+    {
+        double susceptible = TotalPopulation - CalculateInfected(time) - CalculateRecovered(time);
+        return susceptible;
+    }
+
+    public double CalculateInfected(double time)
+    {
+        double infected = InitialInfected * Math.Exp((Beta - Gamma) * time);
+        return infected;
+    }
+
+    public double CalculateRecovered(double time)
+    {
+        double recovered = InitialRecovered + (InitialInfected - CalculateInfected(time));
+        return recovered;
+    }
 }
